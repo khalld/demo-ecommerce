@@ -1,5 +1,5 @@
 <script>
-	import { userStore } from '../store.js';
+	import { userStore } from '../lib/js/store.js';
 	import { onMount } from 'svelte';
 
 	console.log($userStore);

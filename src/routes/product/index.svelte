@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { cart } from '../../lib/js/store.js';
 
 	let products = [];
 
@@ -12,9 +13,18 @@
 
 		const response = await fetch('https://fakestoreapi.com/products/');
 		products = await response.json();
-		console.log(products);
-		console.log(products.length);
+		// console.log(products);
+		// console.log(products.length);
 	});
+
+	function addToCart (id) {
+		var currentCart = [];
+		cart.subscribe((cart) => {
+			currentCart = cart.products;
+		});
+		currentCart.push(products.at(id));
+		cart.set({products: currentCart, amount: 0.0})
+	}
 
 	// https://fakestoreapi.com/products/
 </script>
@@ -36,6 +46,8 @@
 								{p.description}
 							</p>
 							<button class="btn btn-success" on:click={() => goto(`/product/${p.id}`)} >Detail</button>
+							<button class="btn btn-success" on:click={() => addToCart(p.id)} >Add to cart</button>
+
 						</div>
 					</div>
 				</div>

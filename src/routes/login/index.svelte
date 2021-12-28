@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-	import { app } from './../../firebase.js';
+	import { app } from '../../lib/js/firebase.js';
 	import { goto } from '$app/navigation';
-	import { userStore } from '../../store';
+	import { userStore } from '../../lib/js/store';
 
 	let email = 'test@gmail.com';
 	let password = 'password01';
