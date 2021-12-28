@@ -1,14 +1,51 @@
+<script lang="ts">
+	import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+	import { app } from './../../firebase.js';
+	import { goto } from '$app/navigation';
+	import { userStore } from '../../store';
+
+	let email = 'test@gmail.com';
+    let password = 'password01';
+
+	async function loginWithGoogle() {
+		try {
+			// console.log($location.state)
+
+			app
+
+			const auth = getAuth();
+				signInWithEmailAndPassword(auth, email, password)
+				.then((userCredential) => {
+					// Signed in 
+					const user = userCredential.user;
+					userStore.set({loggedIn: true, user: user});
+					goto("/");
+				})
+				.catch((error) => {
+					const errorCode = error.code;
+					const errorMessage = error.message;
+				});
+
+		} catch (e) {
+			console.log(e);
+		}
+	}
+
+
+
+  </script>
+
 <main class="form-signin">
 	<form>
-		<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" />
+		<!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
 		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 		<div class="form-floating">
-			<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" />
+			<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" bind:value="{email}"/>
 			<label for="floatingInput">Email address</label>
 		</div>
 		<div class="form-floating">
-			<input type="password" class="form-control" id="floatingPassword" placeholder="Password" />
+			<input type="password" class="form-control" id="floatingPassword" placeholder="Password" bind:value="{password}"/>
 			<label for="floatingPassword">Password</label>
 		</div>
 
@@ -17,7 +54,8 @@
 				<input type="checkbox" value="remember-me" /> Remember me
 			</label>
 		</div>
-		<button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+		<div class="w-100 btn btn-lg btn-primary" on:click={loginWithGoogle} href="/">Log in</div>
+
 		<p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
 	</form>
 </main>
