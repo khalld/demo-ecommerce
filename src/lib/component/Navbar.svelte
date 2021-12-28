@@ -1,3 +1,8 @@
+<script>
+	import { page } from '$app/stores'
+
+</script>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="#">Navbar</a>
@@ -15,17 +20,17 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					<a class="nav-link active" aria-current="page" href="/"><i class="fas fa-home"></i> Home</a>
+					<a class="nav-link { $page.path == "/" ? "active" : "" }" aria-current="page" href="/"><i class="fas fa-home"></i> Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i> Carrello</a>
+					<a class="nav-link  { $page.path == "/cart" ? "active" : "" }" href="/cart"><i class="fas fa-shopping-cart"></i> Carrello</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="/product"><i class="fas fa-star"></i> Products</a>
+					<a class="nav-link  { $page.path == "/product" ? "active" : "" }" href="/product"><i class="fas fa-star"></i> Products</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a
-						class="nav-link dropdown-toggle"
+						class="nav-link dropdown-toggle {$page.path == "/admin" || $page.path == "/profile" ? "active" : "" }"
 						href="#"
 						id="navbarDropdown"
 						role="button"
@@ -35,8 +40,8 @@
 					<i class="fas fa-user"></i> Username
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="/admin">Admin</a></li>
-						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item {$page.path == "/admin" ? "active" : "" }" href="/admin">Admin</a></li>
+						<li><a class="dropdown-item {$page.path == "/profile" ? "active" : "" }" href="/profile">Profile</a></li>
 						<li><hr class="dropdown-divider" /></li>
 						<li><a class="dropdown-item" href="/login">Logout</a></li>
 					</ul>

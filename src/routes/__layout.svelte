@@ -6,6 +6,8 @@ import Navbar from '../lib/component/Navbar.svelte';
 
 <Navbar />
 
-<slot></slot>
+<div class="my-3 mx-3">
+    <slot></slot>
+</div>
 
 <!-- <Footer /> -->

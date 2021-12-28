@@ -1,26 +1,158 @@
 <script>
-    import { onMount } from 'svelte';
+	import { onMount } from 'svelte';
 	import { cart } from '../../lib/js/store.js';
+	import ProductCardCart from '../../lib/component/ProductCardCart.svelte';
 
-    var currentCart = [];
+	var currentCart = [];
 
-    onMount(async () => {
+	onMount(async () => {
 		cart.subscribe((cart) => {
 			currentCart = cart.products;
 		});
-        console.log(currentCart)
-
 	});
-
-
 </script>
 
-
 {#if $cart.products.length == 0}
-	<p>No cart</p>
+	<div class="alert alert-danger text-center" role="alert">Empty cart!</div>
 {:else}
-    {#each $cart.products as elem }
-        <p>{elem.title}</p>
-    {/each}
+	<div class="container py-5 h-100">
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col">
+				<div class="card">
+					<div class="card-body p-4">
+						<div class="row">
+							<div class="col-lg-7">
+								<div class="d-flex justify-content-between align-items-center mb-4">
+									<div>
+										<p class="mb-1">Shopping cart</p>
+										<p class="mb-0">You have 4 items in your cart</p>
+									</div>
+									<div>
+										<p class="mb-0">
+											<span class="text-muted">Sort by:</span>
+											<a href="#!" class="text-body">price <i class="fas fa-angle-down mt-1" /></a>
+										</p>
+									</div>
+								</div>
 
+								{#each $cart.products as elem}
+									<ProductCardCart obj={elem} />
+								{/each}
+							</div>
+							<div class="col-lg-5">
+								<div class="card bg-primary text-white rounded-3">
+									<div class="card-body">
+										<div class="d-flex justify-content-between align-items-center mb-4">
+											<h5 class="mb-0">Card details</h5>
+											<img
+												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+												class="img-fluid rounded-3"
+												style="width: 45px;"
+												alt="Avatar"
+											/>
+										</div>
+
+										<p class="small mb-2">Card type</p>
+										<a href="#!" type="submit" class="text-white"
+											><i class="fab fa-cc-mastercard fa-2x me-2" /></a
+										>
+										<a href="#!" type="submit" class="text-white"
+											><i class="fab fa-cc-visa fa-2x me-2" /></a
+										>
+										<a href="#!" type="submit" class="text-white"
+											><i class="fab fa-cc-amex fa-2x me-2" /></a
+										>
+										<a href="#!" type="submit" class="text-white"
+											><i class="fab fa-cc-paypal fa-2x" /></a
+										>
+
+										<form class="mt-4">
+											<div class="form-outline form-white mb-4">
+												<input
+													type="text"
+													id="typeName"
+													class="form-control form-control-lg"
+													siez="17"
+													placeholder="Cardholder's Name"
+												/>
+												<label class="form-label" for="typeName">Cardholder's Name</label>
+											</div>
+
+											<div class="form-outline form-white mb-4">
+												<input
+													type="text"
+													id="typeText"
+													class="form-control form-control-lg"
+													siez="17"
+													placeholder="1234 5678 9012 3457"
+													minlength="19"
+													maxlength="19"
+												/>
+												<label class="form-label" for="typeText">Card Number</label>
+											</div>
+
+											<div class="row mb-4">
+												<div class="col-md-6">
+													<div class="form-outline form-white">
+														<input
+															type="text"
+															id="typeExp"
+															class="form-control form-control-lg"
+															placeholder="MM/YYYY"
+															size="7"
+															minlength="7"
+															maxlength="7"
+														/>
+														<label class="form-label" for="typeExp">Expiration</label>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-outline form-white">
+														<input
+															type="password"
+															id="typeText"
+															class="form-control form-control-lg"
+															placeholder="&#9679;&#9679;&#9679;"
+															size="1"
+															minlength="3"
+															maxlength="3"
+														/>
+														<label class="form-label" for="typeText">Cvv</label>
+													</div>
+												</div>
+											</div>
+										</form>
+
+										<hr class="my-4" />
+
+										<div class="d-flex justify-content-between">
+											<p class="mb-2">Subtotal</p>
+											<p class="mb-2">$4798.00</p>
+										</div>
+
+										<div class="d-flex justify-content-between">
+											<p class="mb-2">Shipping</p>
+											<p class="mb-2">$20.00</p>
+										</div>
+
+										<div class="d-flex justify-content-between mb-4">
+											<p class="mb-2">Total(Incl. taxes)</p>
+											<p class="mb-2">$4818.00</p>
+										</div>
+
+										<button type="button" class="btn btn-info btn-block btn-lg">
+											<div class="d-flex justify-content-between">
+												<span>$4818.00</span>
+												<span>Checkout <i class="fas fa-long-arrow-alt-right ms-2" /></span>
+											</div>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {/if}
