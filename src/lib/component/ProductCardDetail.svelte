@@ -1,5 +1,7 @@
 <script>
 	export let product;
+	export let addToCart;
+
 </script>
 
 <div class="card">
@@ -12,7 +14,7 @@
 				<h5 class="card-title">{product.title}</h5>
 				<p class="card-text">{product.description}</p>
 				<p class="card-text"><small class="text-muted">{product.price}</small></p>
-				<button class="btn btn-primary" on:click={() => console.log('TODO add in cart.Checkout.')}
+				<button class="btn btn-primary" on:click={() => addToCart}
 					>Add in cart
 				</button>
 			</div>

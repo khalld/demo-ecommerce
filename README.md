@@ -36,22 +36,3 @@ npm run build
 ```
 
 > You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
-
-
-## TODO
-
-Carrello — funzionamento con product da api fake
-
-Sistema pagine FE
-
-login
-logout
-(pagina profilo mostrata)
-autenticazione con sessione
-
-salvataggio di SOLO ordine a db su firebase
-calcolo pagamento
-
-fine…
-
-PAGINA ADMIN DA gestire successivamente…

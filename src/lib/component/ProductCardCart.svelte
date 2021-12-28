@@ -3,25 +3,19 @@
     export let obj;
 
 	function deletefromCart(){
-
-		// TODO
-
-		console.log(obj.id)
+		// TODO da implementare lo scalo di quantità
 		var currentCart = [];
-
+		var amount = 0.0
 		cart.subscribe((cart) => {
 			currentCart = cart.products;
+			currentCart = currentCart.filter(o => o.id !== obj.id)
 		});
 
-		const index = currentCart.indexOf(obj.id);
-		if (index > -1) {
-			currentCart = currentCart.splice(index, 1);
-		}
+		currentCart.map((price) => {
+			amount += price.price;
+		})
 
-		console.log("before set");
-		console.log(currentCart);
-
-		cart.set({products: currentCart, amount: 0.0})
+		cart.set({products: currentCart, amount: amount})
 	}
 
 </script>

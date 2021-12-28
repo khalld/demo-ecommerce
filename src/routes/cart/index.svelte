@@ -5,6 +5,8 @@
 
 	var currentCart = [];
 
+	const shipping = 5.00;
+
 	onMount(async () => {
 		cart.subscribe((cart) => {
 			currentCart = cart.products;
@@ -25,14 +27,14 @@
 								<div class="d-flex justify-content-between align-items-center mb-4">
 									<div>
 										<p class="mb-1">Shopping cart</p>
-										<p class="mb-0">You have 4 items in your cart</p>
+										<p class="mb-0">You have {$cart.products.length} items in your cart</p>
 									</div>
-									<div>
+									<!-- <div>
 										<p class="mb-0">
 											<span class="text-muted">Sort by:</span>
 											<a href="#!" class="text-body">price <i class="fas fa-angle-down mt-1" /></a>
 										</p>
-									</div>
+									</div> -->
 								</div>
 
 								{#each $cart.products as elem}
@@ -45,8 +47,8 @@
 										<div class="d-flex justify-content-between align-items-center mb-4">
 											<h5 class="mb-0">Card details</h5>
 											<img
-												src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-												class="img-fluid rounded-3"
+											src="https://avatars.githubusercontent.com/u/37438774?v=4"
+											class="img-fluid rounded-3"
 												style="width: 45px;"
 												alt="Avatar"
 											/>
@@ -127,22 +129,21 @@
 
 										<div class="d-flex justify-content-between">
 											<p class="mb-2">Subtotal</p>
-											<p class="mb-2">$4798.00</p>
+											<p class="mb-2">{$cart.amount} €</p>
 										</div>
 
 										<div class="d-flex justify-content-between">
 											<p class="mb-2">Shipping</p>
-											<p class="mb-2">$20.00</p>
+											<p class="mb-2">{shipping} €</p>
 										</div>
 
 										<div class="d-flex justify-content-between mb-4">
 											<p class="mb-2">Total(Incl. taxes)</p>
-											<p class="mb-2">$4818.00</p>
+											<p class="mb-2">{$cart.amount + shipping} €</p>
 										</div>
 
 										<button type="button" class="btn btn-info btn-block btn-lg">
 											<div class="d-flex justify-content-between">
-												<span>$4818.00</span>
 												<span>Checkout <i class="fas fa-long-arrow-alt-right ms-2" /></span>
 											</div>
 										</button>

@@ -1,18 +1,26 @@
 <script>
 	import { onMount } from 'svelte';
-  import { page } from '$app/stores'
-import ProductCardDetail from '$lib/component/ProductCardDetail.svelte';
+	import { page } from '$app/stores';
+	import ProductCardDetail from '$lib/component/ProductCardDetail.svelte';
+	import { cart } from '../../lib/js/store.js';
 
-  const id = $page.params.id;
+	const id = $page.params.id;
 
 	let product = null;
+
 	onMount(async () => {
 		const response = await fetch(`https://fakestoreapi.com/products/${id}`);
 		product = await response.json();
-		console.log(product);
-        console.log(product != null);
-
 	});
+
+	function addToCart () {
+		var currentCart = [];
+		cart.subscribe((cart) => {
+			currentCart = cart.products;
+		});
+		currentCart.push(product);
+		cart.set({products: currentCart, amount: 0.0})
+	}
 
 	// https://fakestoreapi.com/products/
 </script>
@@ -22,6 +30,5 @@ import ProductCardDetail from '$lib/component/ProductCardDetail.svelte';
 		<span class="visually-hidden">Loading...</span>
 	</div>
 {:else}
-<ProductCardDetail product={product} />
-
-  {/if}
+	<ProductCardDetail product={product} addToCart={addToCart()} />
+{/if}

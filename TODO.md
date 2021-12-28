@@ -1,0 +1,5 @@
+- Contatore su numero di ordini
+- Migrare API da fake a from Firebase
+- Integrare quantità di prodotto su ordine
+- Componenti
+- Funzionalità pagina ADMIN
