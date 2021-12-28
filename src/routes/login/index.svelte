@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+	import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 	import { app } from './../../firebase.js';
 	import { goto } from '$app/navigation';
 	import { userStore } from '../../store';
 
 	let email = 'test@gmail.com';
-    let password = 'password01';
+	let password = 'password01';
 
 	async function loginWithGoogle() {
 		try {
@@ -16,7 +16,7 @@
 			const auth = getAuth();
 				signInWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
-					// Signed in 
+					// Signed in
 					const user = userCredential.user;
 					userStore.set({loggedIn: true, user: user});
 					goto("/");
@@ -31,9 +31,22 @@
 		}
 	}
 
+	import { collection, addDoc } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
 
-
-  </script>
+	// async function loginWithGoogle() {
+	// 	try {
+	// 		const docRef = await addDoc(collection(db, 'users'), {
+	// 			first: 'Ada',
+	// 			last: 'Lovelace',
+	// 			born: 1815
+	// 		});
+	// 		console.log('Document written with ID: ', docRef.id);
+	// 	} catch (e) {
+	// 		console.error('Error adding document: ', e);
+	// 	}
+	// }
+</script>
 
 <main class="form-signin">
 	<form>
@@ -41,11 +54,23 @@
 		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 		<div class="form-floating">
-			<input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" bind:value="{email}"/>
+			<input
+				type="email"
+				class="form-control"
+				id="floatingInput"
+				placeholder="name@example.com"
+				bind:value={email}
+			/>
 			<label for="floatingInput">Email address</label>
 		</div>
 		<div class="form-floating">
-			<input type="password" class="form-control" id="floatingPassword" placeholder="Password" bind:value="{password}"/>
+			<input
+				type="password"
+				class="form-control"
+				id="floatingPassword"
+				placeholder="Password"
+				bind:value={password}
+			/>
 			<label for="floatingPassword">Password</label>
 		</div>
 

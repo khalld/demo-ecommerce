@@ -20,6 +20,9 @@
 				<li class="nav-item">
 					<a class="nav-link" href="/cart"><i class="fas fa-shopping-cart"></i> Carrello</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/product"><i class="fas fa-star"></i> Products</a>
+				</li>
 				<li class="nav-item dropdown">
 					<a
 						class="nav-link dropdown-toggle"
@@ -35,7 +38,7 @@
 						<li><a class="dropdown-item" href="/admin">Admin</a></li>
 						<li><a class="dropdown-item" href="/profile">Profile</a></li>
 						<li><hr class="dropdown-divider" /></li>
-						<li><a class="dropdown-item" href="#">Logout</a></li>
+						<li><a class="dropdown-item" href="/login">Logout</a></li>
 					</ul>
 				</li>
 			</ul>
