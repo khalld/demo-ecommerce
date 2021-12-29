@@ -41,7 +41,7 @@
 					<h5 class="fw-normal mb-0">1</h5>
 				</div>
 				<div style="width: 80px;">
-					<h5 class="mb-0">{obj.price}</h5>
+					<h5 class="mb-0">{obj.price} €</h5>
 				</div>
 				<i class="fas fa-trash-alt" on:click={deletefromCart}/>
 			</div>
