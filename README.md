@@ -1,6 +1,7 @@
 # E-commerce-demo
 
-Sample SvelteKit e-commerce demo with bootstrap 5 integration.
+Sample SvelteKit e-commerce demo with Bootstrap 5.
+Thanks to [JSONPlaceholder](https://jsonplaceholder.typicode.com)
 
 ## create-svelte
 
