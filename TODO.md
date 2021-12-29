@@ -1,6 +1,7 @@
 # Nice TODOs
 - Dockerize all project
 
+- Import bootstrap from static
 - Tooltip on cart icon that show number of element
 - Implement quantity of product selected on order (insert in cart/remove from cart)
 - Notification when cart is edited
