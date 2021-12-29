@@ -3,7 +3,6 @@
     export let obj;
 
 	function deletefromCart(){
-		// TODO da implementare lo scalo di quantità
 		var currentCart = [];
 		var amount = 0.0
 		cart.subscribe((cart) => {

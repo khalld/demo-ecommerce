@@ -15,11 +15,13 @@
 
 	function addToCart () {
 		var currentCart = [];
+		let currentAmount = 0.0;
 		cart.subscribe((cart) => {
 			currentCart = cart.products;
+			currentAmount = cart.amount + parseInt(product.price);
 		});
 		currentCart.push(product);
-		cart.set({products: currentCart, amount: 0.0})
+		cart.set({products: currentCart, amount: currentAmount})
 	}
 
 	// https://fakestoreapi.com/products/

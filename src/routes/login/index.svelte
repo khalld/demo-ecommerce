@@ -1,56 +1,19 @@
 <script lang="ts">
-	import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-	import { app } from '../../lib/js/firebase.js';
 	import { goto } from '$app/navigation';
 	import { userStore } from '../../lib/js/store';
 
 	let email = 'test@gmail.com';
 	let password = 'password01';
+	let role = 'admin';
 
-	async function loginWithGoogle() {
-		try {
-			// console.log($location.state)
-
-			app
-
-			const auth = getAuth();
-				signInWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
-					// Signed in
-					const user = userCredential.user;
-					userStore.set({loggedIn: true, user: user});
-					goto("/");
-				})
-				.catch((error) => {
-					const errorCode = error.code;
-					const errorMessage = error.message;
-				});
-
-		} catch (e) {
-			console.log(e);
-		}
+	async function login() {
+		userStore.set({loggedIn: true, user: {email: email, name: 'Danilo', username: 'khalld', role: role}});
+		goto("/");
 	}
-
-	import { collection, addDoc } from 'firebase/firestore';
-import { initializeApp } from 'firebase/app';
-
-	// async function loginWithGoogle() {
-	// 	try {
-	// 		const docRef = await addDoc(collection(db, 'users'), {
-	// 			first: 'Ada',
-	// 			last: 'Lovelace',
-	// 			born: 1815
-	// 		});
-	// 		console.log('Document written with ID: ', docRef.id);
-	// 	} catch (e) {
-	// 		console.error('Error adding document: ', e);
-	// 	}
-	// }
 </script>
 
 <main class="form-signin">
 	<form>
-		<!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57" /> -->
 		<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
 		<div class="form-floating">
@@ -79,25 +42,18 @@ import { initializeApp } from 'firebase/app';
 				<input type="checkbox" value="remember-me" /> Remember me
 			</label>
 		</div>
-		<div class="w-100 btn btn-lg btn-primary" on:click={loginWithGoogle} href="/">Log in</div>
+		<div>
+			<a href="/recover">Forgot password?</a>
+		</div>
+		<div>
+			<a href="/register">Not registered yet?</a>
+		</div>
+		<div class="w-100 btn btn-lg btn-primary mt-3" on:click={login} href="/">Log in</div>
 
-		<p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
 	</form>
 </main>
 
 <style>
-	body {
-		height: 100%;
-	}
-
-	body {
-		display: flex;
-		align-items: center;
-		padding-top: 40px;
-		padding-bottom: 40px;
-		background-color: #f5f5f5;
-	}
-
 	.form-signin {
 		width: 100%;
 		max-width: 330px;

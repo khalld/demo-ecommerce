@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
 	import { cart } from '../../lib/js/store.js';
 	import ProductCardList from '../../lib/component/ProductCardList.svelte';
 	
@@ -11,13 +10,16 @@
 		products = await response.json();
 	});
 
-	function addToCart (id) {
+	function addToCart (p) {
 		var currentCart = [];
+		let currentAmount = 0.0;
 		cart.subscribe((cart) => {
 			currentCart = cart.products;
+			currentAmount = cart.amount + p.price;
 		});
-		currentCart.push(products.at(id));
-		cart.set({products: currentCart, amount: 0.0})
+		currentCart.push(p);
+
+		cart.set({products: currentCart, amount: currentAmount})
 	}
 </script>
 
@@ -29,7 +31,7 @@
 	<div class="row row-cols-1 row-cols-md-2 g-4">
 		{#each products as p}
 			<div class="col">
-				<ProductCardList {p} addToCart={() => addToCart(p.id)}/>
+				<ProductCardList {p} addToCart={() => addToCart(p)}/>
 			</div>
 		{/each}
 	</div>

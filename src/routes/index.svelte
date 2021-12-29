@@ -3,9 +3,10 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 
+	// $: console.log($userStore);
+
 	onMount(async () => {
 		if (!$userStore.loggedIn) {
-			console.log('devi implementare redirect..');
 			goto('/login');
 		}
 	});

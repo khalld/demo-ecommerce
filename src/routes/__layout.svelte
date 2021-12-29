@@ -1,7 +1,7 @@
 <script>
-import Footer from '$lib/component/Footer.svelte';
 import Navbar from '../lib/component/Navbar.svelte';
 import { page } from '$app/stores';
+
 </script>
 
 <Navbar />
@@ -13,4 +13,3 @@ import { page } from '$app/stores';
 {:else}
     <slot></slot>
 {/if}
-<!-- <Footer /> -->

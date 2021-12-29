@@ -1,11 +1,17 @@
 <script>
 	import { page } from '$app/stores'
+	import { userStore } from '../../lib/js/store';
+	import { goto } from '$app/navigation';
 
+	function logout(){
+		userStore.set({loggedIn: false, user: {}});
+		goto("/login");
+	}
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">Navbar</a>
+		<a class="navbar-brand" href="/"><i class="fas fa-dragon"></i></a>
 		<button
 			class="navbar-toggler"
 			type="button"
@@ -23,7 +29,7 @@
 					<a class="nav-link { $page.path == "/" ? "active" : "" }" aria-current="page" href="/"><i class="fas fa-home"></i> Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link  { $page.path == "/cart" ? "active" : "" }" href="/cart"><i class="fas fa-shopping-cart"></i> Carrello</a>
+					<a class="nav-link  { $page.path == "/cart" ? "active" : "" }" href="/cart"><i class="fas fa-shopping-cart"></i> Cart</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link  { $page.path == "/product" ? "active" : "" }" href="/product"><i class="fas fa-star"></i> Products</a>
@@ -31,19 +37,23 @@
 				<li class="nav-item dropdown">
 					<a
 						class="nav-link dropdown-toggle {$page.path == "/admin" || $page.path == "/profile" ? "active" : "" }"
-						href="#"
+						href="/"
 						id="navbarDropdown"
 						role="button"
 						data-bs-toggle="dropdown"
 						aria-expanded="false"
 					>
-					<i class="fas fa-user"></i> Username
+					<i class="fas fa-user"></i> {$userStore.user.username}
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+						{#if $userStore.user.role == 'admin'}
 						<li><a class="dropdown-item {$page.path == "/admin" ? "active" : "" }" href="/admin">Admin</a></li>
+						{/if}
+						
 						<li><a class="dropdown-item {$page.path == "/profile" ? "active" : "" }" href="/profile">Profile</a></li>
 						<li><hr class="dropdown-divider" /></li>
-						<li><a class="dropdown-item" href="/login">Logout</a></li>
+						<li><div class="dropdown-item" on:click={logout}>Logout</div></li>
 					</ul>
 				</li>
 			</ul>
